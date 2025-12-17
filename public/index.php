@@ -1,7 +1,10 @@
 <?php
+// Suppress deprecation warnings - add this at the VERY TOP
+error_reporting(E_ALL & ~E_DEPRECATED);
 
-use Illuminate\Foundation\Application;
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
+// ... rest of the file
 
 define('LARAVEL_START', microtime(true));
 
