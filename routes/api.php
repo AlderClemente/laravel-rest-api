@@ -11,14 +11,16 @@ Route::get('/test', function (Request $request) {
 // get all products 
 
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index']);
-// get a single product by id
-Route::get('/products/{id}', [App\Http\Controllers\ProductController::class, 'show']);
-// create a new product             
-Route::post('/products', [App\Http\Controllers\ProductController::class, 'store']);
-// update a product by id
-Route::put('/products/{id}', [App\Http\Controllers\ProductController::class, 'update']);
-// delete a product by id
-Route::delete('/products/{id}', [App\Http\Controllers\ProductController::class, 'destroy']);
+use App\Http\Controllers\ProductController;
+
+// Use route model binding for all product routes
+Route::get('/products/{product}', [ProductController::class, 'show']);
+Route::put('/products/{product}', [ProductController::class, 'update']);
+Route::delete('/products/{product}', [ProductController::class, 'destroy']);
+
+// Keep these as-is (they don't have ID parameters)
+Route::get('/products', [ProductController::class, 'index']);
+Route::post('/products', [ProductController::class, 'store']);
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
